@@ -1,3 +1,5 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 
@@ -17,7 +19,17 @@
 
     <script>
       //TODO: JSP ############################### please set auth error in jsp when required ##############################
-      var authError = false;
+      
+      <c:choose>
+    	<c:when test="${not empty error}">
+    		var authError = ${error};
+    	</c:when>
+    	<c:otherwise>
+    		var authError = false;
+      	</c:otherwise>
+	  </c:choose>
+      
+      
       function onLoadFunction(){
         if (authError) {
           var errorDiv = document.getElementById("errorDiv");
@@ -99,7 +111,7 @@
     </div>
 
     <!--TODO: JSP ############################### set the form action ##############################-->
-    <form role="form" action="./teacherHome.html" class="form-horizontal" id="reg_form" data-toggle="validator">
+    <form role="form" action="/login" class="form-horizontal" id="reg_form" data-toggle="validator" method="post">
       <fieldset>
         <!-- User type input-->
         <div class="form-group">

@@ -2,21 +2,34 @@ CREATE SCHEMA `SmartSchool` ;
 use SmartSchool;
 
 CREATE TABLE `SmartSchool`.`Login` (
+  `userId` INT(11) NOT NULL AUTO_INCREMENT,
   `email` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NULL,
-  `userId` INT NOT NULL,
-  PRIMARY KEY (`email`));
+  `password` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`email`),
+  UNIQUE INDEX `userId_UNIQUE` (`userId` ASC));
 
 CREATE TABLE `SmartSchool`.`Teacher` (
-  `teacherId` INT NOT NULL AUTO_INCREMENT,
+  `tid` INT NOT NULL,
   `teacherName` VARCHAR(45) NOT NULL,
   `designation` VARCHAR(45) NULL,
-  PRIMARY KEY (`teacherId`));
+  PRIMARY KEY (`tid`),
+    CONSTRAINT `tid`
+    FOREIGN KEY (`tid`)
+    REFERENCES `SmartSchool`.`Login` (`userId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION 
+);
 
 CREATE TABLE `SmartSchool`.`Student` (
-  `studentId` INT NOT NULL AUTO_INCREMENT,
+  `sid` INT NOT NULL,
   `studentName` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`studentId`));
+  PRIMARY KEY (`sid`),
+  CONSTRAINT `sid`
+    FOREIGN KEY (`sid`)
+    REFERENCES `SmartSchool`.`Login` (`userId`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION
+);
 
 CREATE TABLE `SmartSchool`.`course` (
   `courseId` INT NOT NULL AUTO_INCREMENT,
@@ -28,7 +41,7 @@ CREATE TABLE `SmartSchool`.`course` (
   INDEX `teacherId_idx` (`teacherId` ASC),
   CONSTRAINT `teacherId`
     FOREIGN KEY (`teacherId`)
-    REFERENCES `SmartSchool`.`Teacher` (`teacherId`)
+    REFERENCES `SmartSchool`.`Teacher` (`tid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -39,7 +52,7 @@ CREATE TABLE `SmartSchool`.`student_course` (
   INDEX `student_course_id_idx` (`student_course_id` ASC),
   CONSTRAINT `studentId`
     FOREIGN KEY (`studentId`)
-    REFERENCES `SmartSchool`.`Student` (`studentId`)
+    REFERENCES `SmartSchool`.`Student` (`sid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `student_course_id`
@@ -107,7 +120,7 @@ CREATE TABLE `SmartSchool`.`answer` (
     ON UPDATE NO ACTION,
   CONSTRAINT `student_id`
     FOREIGN KEY (`student_id`)
-    REFERENCES `SmartSchool`.`Student` (`studentId`)
+    REFERENCES `SmartSchool`.`Student` (`sid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
@@ -121,7 +134,7 @@ CREATE TABLE `SmartSchool`.`grades` (
   INDEX `id_course_idx` (`id_course` ASC),
   CONSTRAINT `id_student`
     FOREIGN KEY (`id_student`)
-    REFERENCES `SmartSchool`.`Student` (`studentId`)
+    REFERENCES `SmartSchool`.`Student` (`sid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `id_exam`
