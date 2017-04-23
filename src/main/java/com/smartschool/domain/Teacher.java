@@ -2,18 +2,18 @@ package com.smartschool.domain;
 
 public class Teacher {
 
-		private int userId;
+		private int tid;
 		private String teacherName;
 		private String designation;
 		
 		public Teacher(int userId, String teacherName, String designation){
-			this.userId = userId;
+			this.tid = userId;
 			this.teacherName = teacherName;
 			this.designation = designation;
 		}
 
 		public int getUserId() {
-			return userId;
+			return tid;
 		}
 
 		public String getTeacherName() {

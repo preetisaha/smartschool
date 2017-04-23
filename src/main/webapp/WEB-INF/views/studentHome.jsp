@@ -1,3 +1,8 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page import = "com.smartschool.dto.AuthStudent" %>
+<%@ page import = "com.smartschool.domain.Course" %>
+
 <!Doctype html>
 <html>
   <head>
@@ -27,7 +32,7 @@
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <a class="navbar-brand" href="#"><img alt="Brand" style="max-width:80px; margin-top: -22px;" src="logo5.png"></a>
+        <a class="navbar-brand" href="#"><img alt="Brand" style="max-width:80px; margin-top: -22px;" src="images/logo5.png"></a>
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -58,7 +63,7 @@
         </div>
         <!-- ################### TODO: Add 3 panel content here #################-->
         <div class="panel-body">
-          Panel content
+          ${authStudent.getStudentName()}
         </div>
       </div>
       <div class="panel panel-primary">
@@ -66,7 +71,7 @@
           <h3 class="panel-title">Email Id</h3>
         </div>
         <div class="panel-body">
-          Panel content
+          ${authStudent.getEmail()}
         </div>
       </div>
       <div class="panel panel-primary">
@@ -83,10 +88,10 @@
       <div class="list-group">
         <a href="#" class="list-group-item active">Course List:</a>
         <!-- ################### TODO: Remove the items below and add courses in jsp #################-->
-        <a href="#" class="list-group-item">Maths</a>
-        <a href="#" class="list-group-item">Puss 'n' Boots</a>
-        <a href="#" class="list-group-item">Die With Your Boots On</a>
-        <a href="#" class="list-group-item">Fairies Wear Boots</a>
+        
+        <c:forEach items="${authStudent.getCourse()}" var="eachCourse">
+        	<a href="#" class="list-group-item"><c:out value="${eachCourse.getCourseName()}"/></a>
+        </c:forEach>
       </div>
     </div>
 
@@ -94,5 +99,6 @@
     <div class="col-md-2">
     <!-- ################### Right Margin #################-->
     </div>
+   </div>
   </body>
 </html>

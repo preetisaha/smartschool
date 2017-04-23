@@ -5,12 +5,12 @@ import java.util.Date;
 public class Course {
 	
 	private int courseId;
-	private int courseName;
+	private String courseName;
 	private int teacherId;
 	private Date startDate;
 	private Date endDate;
 	
-	public Course(int courseId, int courseName, int teacherId, Date startDate, Date endDate){
+	public Course(int courseId, String courseName, int teacherId, Date startDate, Date endDate){
 		this.courseId = courseId;
 		this.courseName = courseName;
 		this.teacherId = teacherId;
@@ -22,7 +22,7 @@ public class Course {
 		return courseId;
 	}
 
-	public int getCourseName() {
+	public String getCourseName() {
 		return courseName;
 	}
 

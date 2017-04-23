@@ -8,15 +8,12 @@ import com.smartschool.domain.Login;
 public class LoginMapper implements RowMapper<Login>{
 
 	public Login mapRow(ResultSet resultSet, int noOfRows) throws SQLException {
-		if (noOfRows != 0) {
-			String email = resultSet.getString("email");
-			String password = resultSet.getString("password");
-			int userId = resultSet.getInt("userId");
-			Login login = new Login(email, password, userId);
-			return login;
-		} else {
-			return null;
-		}
+		String email = resultSet.getString("email");
+		String password = resultSet.getString("password");
+		int userId = resultSet.getInt("userId");
+		Login login = new Login(email, password, userId);
+		return login;
+		
 	}
 
 }

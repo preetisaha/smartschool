@@ -1,3 +1,8 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page import = "com.smartschool.dto.AuthTeacher" %>
+<%@ page import = "com.smartschool.domain.Course" %>
+
 <!Doctype html>
 <html>
   <head>
@@ -12,6 +17,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   
     <style>
     .header-dropdown-menu {
       width: 130px !important;
@@ -27,7 +33,7 @@
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <a class="navbar-brand" href="#"><img alt="Brand" style="max-width:80px; margin-top: -22px;" src="logo5.png"></a>
+        <a class="navbar-brand" href="#"><img alt="Brand" style="max-width:80px; margin-top: -22px;" src="images/logo5.png"></a>
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -48,9 +54,11 @@
   <!-- ################### Header Ends ################################-->
 
   <div class="row">
+    
     <div class="col-md-2">
       <!-- ################### Left Margin ##############-->
     </div>
+    
     <div id="teacherInfo" class="col-md-3">
       <div class="panel panel-primary">
         <div class="panel-heading">
@@ -58,7 +66,7 @@
         </div>
         <!-- ################### TODO: Add 3 panel content here #################-->
         <div class="panel-body">
-          Panel content
+          ${authTeacher.getTeacherName()}
         </div>
       </div>
       <div class="panel panel-primary">
@@ -66,7 +74,7 @@
           <h3 class="panel-title">Designation:</h3>
         </div>
         <div class="panel-body">
-          Panel content
+          ${authTeacher.getDesignation()}
         </div>
       </div>
       <div class="panel panel-primary">
@@ -74,19 +82,21 @@
           <h3 class="panel-title">Email Id:</h3>
         </div>
         <div class="panel-body">
-          Panel content
+          ${authTeacher.getEmail()}
         </div>
       </div>
     </div>
-  <!-- ################### Column 3rd starts #################-->
+    
+  	<!-- ################### Column 3rd starts #################-->
     <div class="col-md-5">
       <div class="list-group">
         <a href="#" class="list-group-item active">Course List:</a>
         <!-- ################### TODO: Remove the items below and add courses in jsp #################-->
-        <a href="#" class="list-group-item">Eleanor, Put Your Boots On</a>
-        <a href="#" class="list-group-item">Puss 'n' Boots</a>
-        <a href="#" class="list-group-item">Die With Your Boots On</a>
-        <a href="#" class="list-group-item">Fairies Wear Boots</a>
+        
+        <c:forEach items="${authTeacher.getCourse()}" var="eachCourse">
+        	<a href="/teacherAction?teacherId=${authTeacher.getTeacherId()}&courseId=${eachCourse.getCourseId()}" class="list-group-item"><c:out value="${eachCourse.getCourseName()}"/></a>
+        </c:forEach>
+   
       </div>
     </div>
 
@@ -94,5 +104,8 @@
     <div class="col-md-2">
     <!-- ################### Right Margin #################-->
     </div>
+    
+  </div>
+   
   </body>
 </html>

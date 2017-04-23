@@ -1,5 +1,7 @@
 package com.smartschool.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.smartschool.domain.Student;
-import com.smartschool.domain.Teacher;
+import com.smartschool.domain.Course;
+import com.smartschool.dto.AuthStudent;
+import com.smartschool.dto.AuthTeacher;
 import com.smartschool.service.LoginService;
 
 @Controller
@@ -33,24 +36,24 @@ public class LoginController{
 		}
 		
 		else if(usertype.equals("2")){
-			Teacher teacher = loginService.teacherAuthentication(email, password);
-			if(teacher == null){
+			AuthTeacher authTeacher = loginService.teacherAuthentication(email, password);
+			if(authTeacher == null){
 				mav.addObject("error", true);
 				mav.setViewName("home");
 			} else {
-			mav.addObject("teacher", teacher);
-			mav.setViewName("teacherHome");
+				mav.addObject("authTeacher", authTeacher);
+				mav.setViewName("teacherHome");
 			}
 		}
 		
 		else {
-			Student student = loginService.studentAuthentication(email, password);
-			if(student == null){
+			AuthStudent authStudent = loginService.studentAuthentication(email, password);
+			if(authStudent == null){
 				mav.addObject("error", true);
 				mav.setViewName("home");
 			} else {
-			mav.addObject("student", student);
-			mav.setViewName("studentHome");
+				mav.addObject("authStudent", authStudent);
+				mav.setViewName("studentHome");
 			}
 		}
 		return mav;
