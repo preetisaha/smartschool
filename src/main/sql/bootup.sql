@@ -69,6 +69,8 @@ CREATE TABLE `SmartSchool`.`exam` (
   `duration` VARCHAR(45) NULL,
   `marks` INT NULL,
   `courseId` INT NULL,
+  `publish` TINYINT(10) NOT NULL,
+  `grade_status` TINYINT(10) NOT NULL;
   PRIMARY KEY (`examId`),
   INDEX `courseId_idx` (`courseId` ASC),
   CONSTRAINT `courseId`

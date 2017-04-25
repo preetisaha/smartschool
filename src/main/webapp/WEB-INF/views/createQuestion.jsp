@@ -55,7 +55,7 @@
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <a class="navbar-brand" href="#"><img alt="Brand" style="max-width:80px; margin-top: -22px;" src="logo5.png"></a>
+          <a class="navbar-brand" href="#"><img alt="Brand" style="max-width:80px; margin-top: -22px;" src="images/logo5.png"></a>
         </div>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
@@ -80,7 +80,7 @@
 
   <div class="col-md-8">
     <!-- Body Panel -->
-    <form role="form" action="./teacherHome.html" class="form-horizontal" id="examType" data-toggle="validator">
+    <form role="form" action="./createQuestion" class="form-horizontal" id="examType" data-toggle="validator">
       <fieldset>
 
       <div class="form-group">

@@ -1,6 +1,5 @@
 package com.smartschool.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.smartschool.domain.Course;
 import com.smartschool.dto.AuthStudent;
 import com.smartschool.dto.AuthTeacher;
 import com.smartschool.service.LoginService;
