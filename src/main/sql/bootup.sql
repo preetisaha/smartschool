@@ -70,7 +70,7 @@ CREATE TABLE `SmartSchool`.`exam` (
   `marks` INT NULL,
   `courseId` INT NULL,
   `publish` TINYINT(10) NOT NULL,
-  `grade_status` TINYINT(10) NOT NULL;
+  `grade_status` TINYINT(10) NOT NULL,
   PRIMARY KEY (`examId`),
   INDEX `courseId_idx` (`courseId` ASC),
   CONSTRAINT `courseId`
@@ -81,9 +81,9 @@ CREATE TABLE `SmartSchool`.`exam` (
 
 CREATE TABLE `SmartSchool`.`question` (
   `questionId` INT NOT NULL AUTO_INCREMENT,
-  `question` VARCHAR(45) NULL,
-  `marks` INT NULL,
-  `type` VARCHAR(45) NULL,
+  `question` VARCHAR(45) NOT NULL,
+  `marks` INT NOT NULL,
+  `multipleChoice` TINYINT(10) NOT NULL,
   `examId` INT NOT NULL,
   PRIMARY KEY (`questionId`),
   INDEX `examId_idx` (`examId` ASC),
@@ -94,11 +94,11 @@ CREATE TABLE `SmartSchool`.`question` (
     ON UPDATE NO ACTION);
 
 CREATE TABLE `SmartSchool`.`multiple_choice` (
-  `multiple_choice_id` INT NOT NULL AUTO_INCREMENT,
-  `choice_type` VARCHAR(45) NULL,
-  `answer` VARCHAR(45) NULL,
+  `multipleChoiceId` INT NOT NULL AUTO_INCREMENT,
+  `isValid` TINYINT(10) NOT NULL,
+  `choice` VARCHAR(45) NOT NULL,
   `questionId` INT NOT NULL,
-  PRIMARY KEY (`multiple_choice_id`),
+  PRIMARY KEY (`multipleChoiceId`),
   INDEX `questionId_idx` (`questionId` ASC),
   CONSTRAINT `questionId`
     FOREIGN KEY (`questionId`)

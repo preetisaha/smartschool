@@ -23,21 +23,26 @@
         function onQuestionTypeSelect(){
           var questionType = $("#chooseOption").val();
           var addSign = $("#addSign");
-          if(questionType == "2"){
+          if(questionType == "1"){
             addSign.removeAttr('style');
           }
         }
 
         function openTextOption(){
           var newDiv = $("#optionText");
-          var textArea = $('<div class="form-group">' +
-            '<div class="input-group">' +
-              '<span class="input-group-addon">' +
-                '<input name=optionSelect_' + optionCount + ' type="checkbox" aria-label="...">' +
-              '</span>' +
-              '<input name=optionText_' + optionCount + ' type="text" class="form-control" aria-label="...">' +
-            '</div>' +
-          '</div>');
+          var textArea = $(
+        		'<div class="form-group">'+
+                  '<div class="input-group">'+
+                    '<input name="optionText" type="text" class="form-control">'+
+                    '<span class="input-group-btn">'+
+                      '<select id="optionSelect" name="optionSelect" class="btn" required="">'+
+                        '<option value="0">Incorrect</option>'+
+                        '<option value="1">Correct</option>'+
+                      '</select>'+
+                    '</span>'+
+                  '</div>'+
+                '</div>'	  
+          );
           newDiv.append(textArea);
           optionCount = optionCount + 1;
         }
@@ -80,15 +85,17 @@
 
   <div class="col-md-8">
     <!-- Body Panel -->
-    <form role="form" action="./createQuestion" class="form-horizontal" id="examType" data-toggle="validator">
+    <form role="form" action="./saveQuestion" class="form-horizontal" id="examType" data-toggle="validator" method="post">
       <fieldset>
+
+	  <input id="teacherId" name="teacherId" type="hidden" class="form-control" value="${teacherId}" required="">
+	  <input id="examId" name="examId" type="hidden" class="form-control" value="${examId}" required="">
 
       <div class="form-group">
         <label name="examType"  class="control-label form-group" for="chooseOption"></label>
         <select id="chooseOption" placeholder="Select a type" name="chooseOption" class="form-control input-md" required="" onchange="onQuestionTypeSelect()">
-          <option value=""></option>
-          <option value="1">Essay</option>
-          <option value="2">Multiple Choice</option>
+          <option value="0">Essay</option>
+          <option value="1">Multiple Choice</option>
         </select>
       </div>
 

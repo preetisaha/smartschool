@@ -21,6 +21,10 @@ public class ExamController {
 		ModelAndView mav = new ModelAndView();
 		Exam exam = examService.createExam(examName, courseId);
 		mav.addObject("exam", exam);
+		
+		mav.addObject("teacherId", teacherId);
+		mav.addObject("examId", exam.getExamId());
+		
 		mav.setViewName("createQuestion");
 		return mav;
 	}
