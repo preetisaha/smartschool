@@ -66,8 +66,6 @@ CREATE TABLE `SmartSchool`.`exam` (
   `examName` VARCHAR(45) NULL,
   `startDate` DATE NULL,
   `endDate` DATE NULL,
-  `duration` VARCHAR(45) NULL,
-  `marks` INT NULL,
   `courseId` INT NULL,
   `publish` TINYINT(10) NOT NULL,
   `grade_status` TINYINT(10) NOT NULL,

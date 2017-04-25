@@ -17,11 +17,9 @@ public class ExamMapper implements RowMapper<Exam> {
 		Date endDate = resultSet.getDate("endDate");
 		boolean publish = resultSet.getBoolean("publish");
 		boolean grade_status = resultSet.getBoolean("grade_status");
-		int marks = resultSet.getInt("marks");
-		String duration = resultSet.getString("duration");
 		int courseId = resultSet.getInt("courseId");
 		
-		Exam exam = new Exam(examId, examName, startDate, endDate, duration, marks, courseId, publish, grade_status);
+		Exam exam = new Exam(examId, examName, startDate, endDate, courseId, publish, grade_status);
 		return exam;
 	}
 

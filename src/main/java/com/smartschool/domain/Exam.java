@@ -8,20 +8,16 @@ public class Exam {
 	private String examName;
 	private Date startDate;
 	private Date endDate;
-	private String duration;
-	private int marks;
 	private int courseId;
 	private boolean publish;
 	private boolean grade_status;
 	
-	public Exam(int examId, String examName, Date startDate, Date endDate,String duration,int marks, int courseId, boolean publish, boolean grade_status){
+	public Exam(int examId, String examName, Date startDate, Date endDate, int courseId, boolean publish, boolean grade_status){
 		this.examId = examId;
 		this.examName = examName;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.grade_status = grade_status;
-		this.duration = duration;
-		this.marks = marks;
 		this.courseId = courseId;
 		this.publish = publish;
 	}
@@ -48,14 +44,6 @@ public class Exam {
 
 	public boolean getGradeStatus() {
 		return grade_status;
-	}
-
-	public String getDuration() {
-		return duration;
-	}
-
-	public int getMarks() {
-		return marks;
 	}
 
 	public int getCourseId() {
