@@ -30,4 +30,8 @@ public class ExamDAO {
 		jdbcTem.update("update exam set startDate = ?, endDate = ?, publish = 1 where examId = ?", new Object[] {startDate, endDate, examId});
 		return jdbcTem.queryForObject("select * from exam where examId = ?", new Object[] {examId}, new ExamMapper());
 	}
+	
+	public List<Exam> getFinishedExams() {
+		return jdbcTem.query("SELECT * FROM exam where endDate < CURDATE()", new ExamMapper());
+	}
 }

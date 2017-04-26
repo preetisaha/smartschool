@@ -124,26 +124,16 @@ CREATE TABLE `SmartSchool`.`answer` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE `SmartSchool`.`grades` (
-  `id_student` INT(11) NOT NULL,
-  `id_exam` INT(11) NOT NULL,
-  `id_course` INT(11) NOT NULL,
-  `grade` VARCHAR(45) NULL,
-  INDEX `id_student_idx` (`id_student` ASC),
-  INDEX `id_exam_idx` (`id_exam` ASC),
-  INDEX `id_course_idx` (`id_course` ASC),
-  CONSTRAINT `id_student`
-    FOREIGN KEY (`id_student`)
-    REFERENCES `SmartSchool`.`Student` (`sid`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `id_exam`
-    FOREIGN KEY (`id_exam`)
-    REFERENCES `SmartSchool`.`exam` (`examId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `id_course`
-    FOREIGN KEY (`id_course`)
-    REFERENCES `SmartSchool`.`course` (`courseId`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+CREATE TABLE `grades` (
+  `id_student` int(11) NOT NULL,
+  `id_exam` int(11) NOT NULL,
+  `id_course` int(11) NOT NULL,
+  `grade` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_student`,`id_exam`,`id_course`),
+  KEY `id_student_idx` (`id_student`),
+  KEY `id_exam_idx` (`id_exam`),
+  KEY `id_course_idx` (`id_course`),
+  CONSTRAINT `id_course` FOREIGN KEY (`id_course`) REFERENCES `course` (`courseId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `id_exam` FOREIGN KEY (`id_exam`) REFERENCES `exam` (`examId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `id_student` FOREIGN KEY (`id_student`) REFERENCES `Student` (`sid`) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
