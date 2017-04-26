@@ -1,3 +1,9 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page import = "com.smartschool.domain.Grade" %>
+
+
+
 <!Doctype html>
 <html>
   <head>
@@ -40,10 +46,12 @@
 
     <script>
       function modalOpenFunction(eventObj) {
+    	var tId = $(eventObj.currentTarget).data('teacher-id');
+         $("#teacherId").val(tId);  
         var stdId = $(eventObj.currentTarget).data('student-id');
          $("#studentId").val(stdId);
-        var exmName = $(eventObj.currentTarget).data('exam-name');
-          $("#examName").val(exmName);
+        var exmId = $(eventObj.currentTarget).data('exam-id');
+          $("#examId").val(exmId);
         var courseId = $(eventObj.currentTarget).data('course-id');
           $("#courseId").val(courseId);
       }
@@ -113,27 +121,21 @@
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>Firstname</th>
-              <th>Lastname</th>
+              <th>Student ID</th>
+              <th>Name</th>
               <th>Grade</th>
             </tr>
           </thead>
           <tbody>
+            
+           <c:forEach items="${gradeList}" var="eachGrade">
             <tr>
-              <td>John</td>
-              <td>Doe</td>
-              <td>23 <a href="#"><span class="glyphicon glyphicon-pencil open-Modal" aria-hidden="true" data-toggle="modal" data-target="#myModal" data-student-id="24" data-exam-name= "mid" data-course-id="m1"></span></a></td>
+              <td>${eachGrade.getId_student()}</td>
+              <td>${eachGrade.getStudentName()}</td>
+              <td>${eachGrade.getGrade()}<a href="#"><span class="glyphicon glyphicon-pencil open-Modal" aria-hidden="true" data-toggle="modal" data-target="#myModal" data-student-id="${eachGrade.getId_student()}" data-exam-id= "${examId}" data-course-id="${courseId}" data-teacher-id="${teacherId}"></span></a></td>
             </tr>
-            <tr>
-              <td>Mary</td>
-              <td>Moe</td>
-              <td>67 <a href="#"><span class="glyphicon glyphicon-pencil open-Modal" aria-hidden="true" data-toggle="modal" data-target="#myModal" data-student-id="name"></span></a></td>
-            </tr>
-            <tr>
-              <td>David</td>
-              <td>Long</td>
-              <td>88 <a href="#"><span class="glyphicon glyphicon-pencil open-Modal" aria-hidden="true" data-toggle="modal" data-target="#myModal" data-student-id="Mid"></span></a></td>
-            </tr>
+          </c:forEach>
+            
           </tbody>
         </table>
       </div>
@@ -151,14 +153,17 @@
           <h4 class="modal-title">Edit Grade</h4>
         </div>
 
-        <form action="./teacherHome.html" role="form" id="modal_form">
+        <form action="./updateGrade" role="form" id="modal_form">
           <fieldset>
             <div class="modal-body">
+              <div class="form-group">
+                <input type="hidden" name="teacherId" id="teacherId" class="form-control input-md" required="">
+              </div>	
               <div class="form-group">
                 <input type="hidden" name="studentId" id="studentId" class="form-control input-md" required="">
               </div>
               <div class="form-group">
-                <input type="hidden" name="examName" id="examName" class="form-control input-md" required="">
+                <input type="hidden" name="examId" id="examId" class="form-control input-md" required="">
               </div>
               <div class="form-group">
                 <input type="hidden" name="courseId" id="courseId" class="form-control input-md" required="">

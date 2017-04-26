@@ -27,7 +27,9 @@
             addSign.removeAttr('style');
           }
         }
-
+		
+        $(document).ready(onQuestionTypeSelect);
+        
         function openTextOption(){
           var newDiv = $("#optionText");
           var textArea = $(
@@ -91,6 +93,7 @@
 	  <input id="teacherId" name="teacherId" type="hidden" class="form-control" value="${teacherId}" required="">
 	  <input id="examId" name="examId" type="hidden" class="form-control" value="${examId}" required="">
 
+	  <!--	
       <div class="form-group">
         <label name="examType"  class="control-label form-group" for="chooseOption"></label>
         <select id="chooseOption" placeholder="Select a type" name="chooseOption" class="form-control input-md" required="" onchange="onQuestionTypeSelect()">
@@ -98,6 +101,10 @@
           <option value="1">Multiple Choice</option>
         </select>
       </div>
+      -->
+
+	  <!-- For now we are going only for multiple answers -->	
+	  <input id="chooseOption" name="chooseOption" type="hidden" class="form-control" value="1" required="">
 
       <div class="form-group">
         <label class="control-label form-group" for="questionTextArea"></label>
@@ -122,7 +129,7 @@
         <button style="text-align:center; display:block" type="submit" id="formSubmitButton" name="formSubmitButton" class="btn btn-primary">Save</button>
       </div><br>
 
-      <fieldset>
+      </fieldset>
     </form>
   </div>
 

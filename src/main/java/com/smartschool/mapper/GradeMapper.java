@@ -16,8 +16,9 @@ public class GradeMapper implements RowMapper<Grade>{
 		int id_exam = resultSet.getInt("id_exam");
 		int id_course = resultSet.getInt("id_course");
 		int grade = resultSet.getInt("grade");
+		String studentName = resultSet.getString("studentName");
 		
-		Grade gradeObj = new Grade(id_student, id_exam, id_course, grade);
+		Grade gradeObj = new Grade(id_student, id_exam, id_course, grade, studentName);
 		return gradeObj;
 	}
 

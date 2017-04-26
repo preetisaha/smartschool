@@ -32,6 +32,10 @@ public class ExamDAO {
 	}
 	
 	public List<Exam> getFinishedExams() {
-		return jdbcTem.query("SELECT * FROM exam where endDate < CURDATE()", new ExamMapper());
+		return jdbcTem.query("SELECT * FROM exam where endDate < CURDATE() AND publish = 1 AND grade_status = 0", new ExamMapper());
+	}
+	
+	public void updateGradeStatus(int examId) {
+		jdbcTem.update("UPDATE exam set grade_status = 1 WHERE examId = ?", new Object[]{examId});
 	}
 }

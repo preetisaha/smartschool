@@ -128,7 +128,7 @@ CREATE TABLE `grades` (
   `id_student` int(11) NOT NULL,
   `id_exam` int(11) NOT NULL,
   `id_course` int(11) NOT NULL,
-  `grade` varchar(45) DEFAULT NULL,
+  `grade` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_student`,`id_exam`,`id_course`),
   KEY `id_student_idx` (`id_student`),
   KEY `id_exam_idx` (`id_exam`),

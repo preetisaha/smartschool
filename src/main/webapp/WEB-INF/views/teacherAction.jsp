@@ -198,6 +198,8 @@
 		</div>
       </div>
 
+	<!-- Only considering multiple choice questions -->
+	<!--  
     <div class="panel panel-primary">
 		<div class="panel-heading">
 			<h3 class="panel-title">Grade Exam</h3>
@@ -211,7 +213,7 @@
 		  	</div>
 		</div>
 	</div>
-	
+	-->
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h3 class="panel-title">Upcoming Exam</h3>

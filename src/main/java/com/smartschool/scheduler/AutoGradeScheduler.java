@@ -77,7 +77,7 @@ public class AutoGradeScheduler {
 					
 				}
 			}
-			
+			examDAO.updateGradeStatus(finishedExam.getExamId());
 		}
 	}
 }
