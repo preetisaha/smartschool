@@ -90,7 +90,7 @@
         <!-- ################### TODO: Remove the items below and add courses in jsp #################-->
         
         <c:forEach items="${authStudent.getCourse()}" var="eachCourse">
-        	<a href="#" class="list-group-item"><c:out value="${eachCourse.getCourseName()}"/></a>
+        	<a href="/viewGrades?studentId=${authStudent.getStudentId()}&courseId=${eachCourse.getCourseId()}" class="list-group-item"><c:out value="${eachCourse.getCourseName()}"/></a>
         </c:forEach>
       </div>
     </div>

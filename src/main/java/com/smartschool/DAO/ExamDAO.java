@@ -38,4 +38,8 @@ public class ExamDAO {
 	public void updateGradeStatus(int examId) {
 		jdbcTem.update("UPDATE exam set grade_status = 1 WHERE examId = ?", new Object[]{examId});
 	}
+	
+	public Exam getExam(int examId) {
+		return jdbcTem.queryForObject("SELECT * FROM exam WHERE examId = ?", new Object[]{examId}, new ExamMapper());
+	}
 }

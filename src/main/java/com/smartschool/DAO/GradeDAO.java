@@ -31,4 +31,10 @@ public class GradeDAO {
 		jdbcTem.update("UPDATE grades SET grade = ? WHERE id_student = ? "
 				+ "AND id_exam = ? AND id_course = ?", new Object[]{grade, studentId, examId, courseId});
 	}
+	
+	public List<Grade> getStudentGrades(int studentId, int courseId) {
+		return jdbcTem.query("SELECT grades.id_student, grades.id_exam, grades.id_course, grades.grade, "
+				+ "Student.studentName FROM grades INNER JOIN Student ON grades.id_student = Student.sid "
+				+ "WHERE grades.id_course = ? AND grades.id_student = ?", new Object[]{courseId, studentId}, new GradeMapper());
+	}
 }

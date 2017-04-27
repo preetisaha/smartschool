@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.smartschool.domain.Grade;
+import com.smartschool.dto.StudentGrade;
 import com.smartschool.service.GradeService;
 
 @Controller
@@ -49,6 +50,15 @@ public class GradeController {
 		mav.addObject("examId", examId);
 		
 		mav.setViewName("editGrades");
+		return mav;
+	}
+	
+	@RequestMapping(value="/viewGrades", method = RequestMethod.GET)
+	public ModelAndView getStudentGrades(@RequestParam int studentId, @RequestParam int courseId) {
+		ModelAndView mav = new ModelAndView();
+		List<StudentGrade> gradeList = gradeService.getStudentGrades(studentId, courseId);
+		mav.addObject("gradeList", gradeList);
+		mav.setViewName("viewStudentGrades");
 		return mav;
 	}
 }
