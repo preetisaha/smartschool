@@ -1,7 +1,7 @@
 # smartschool
 
 <strong><u>Project Overview:</u></strong>
-Smart School is a software as a service school work flow management system 
+Smart School is a software as a service <strong>(SaaS)</strong> based school work-flow management system 
 which enables administrator to add courses and assign them to teacher and student both.
 
 This application enables teachers to create exams and publish them, where a published exam notification gets mail to all subscribed students in a particular class.
